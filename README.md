@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Screenshots](#screenshots)
 - [Project Structure](#project-structure)
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -48,6 +49,12 @@ project-root/
 ├── Pipfile.lock
 └── requirements.txt
 ```
+
+## Screenshots
+
+![Dark theme](https://i.ibb.co/wd8y9Zr/dark-theme-screenshot.png)
+
+![Light theme](https://i.ibb.co/y5mMdvD/light-theme-screenshot.png)
 
 ## Features
 
