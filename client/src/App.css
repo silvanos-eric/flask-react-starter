@@ -17,6 +17,13 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+.logo.flask:hover {
+  filter: drop-shadow(0 0 2em #000);
+
+  @media (prefers-color-scheme: dark) {
+    filter: drop-shadow(0 0 2.5em #fff);
+  }
+}
 
 @keyframes logo-spin {
   from {
@@ -39,4 +46,13 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.loading {
+  font-style: italic;
+}
+
+.error {
+  color: red;
+  font-style: italic;
 }
