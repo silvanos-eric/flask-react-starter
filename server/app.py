@@ -8,6 +8,8 @@ app = Flask(__name__,
 
 @app.route('/api/hello')
 def hello():
+    import time
+    time.sleep(5)
     return {'message': 'Hello, from Flask!'}
 
 
