@@ -6,64 +6,72 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
+    const { signal } = controller;
 
-    const fetchData = async () => {
-      setIsLoading(true);
+    const loadMessage = async () => {
       setError(null);
+      setLoading(true);
 
       try {
-        const response = await fetch("/api/hello", { signal });
+        const response = await fetch("/api/hello", {
+          signal,
+        });
 
         if (!response.ok) {
-          const { message } = await response.json();
-          throw new Error(message || response.statusText);
+          const errorData = await response.json();
+          throw new Error(errorData.message || response.statusText);
         }
 
-        const data = await response.json();
-        setData(data);
-      } catch (error) {
-        if (error.name !== "AbortError") {
-          setError(error.message);
+        const result = await response.json();
+        setMessage(result.message);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          setError(err.message);
         }
       } finally {
-        setIsLoading(false);
+        if (!signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
-    fetchData();
+    loadMessage();
 
     return () => {
-      controller.abort(); // Abort the fetch request on component unmount
+      controller.abort();
     };
   }, []);
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-        <a href="https://flask.palletsprojects.com" target="_blank">
+        <a
+          href="https://flask.palletsprojects.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={flaskLogo} className="logo flask" alt="Flask logo" />
         </a>
       </div>
       <h1>Vite + React + Flask</h1>
-      {isLoading && <p className="loading">Loading...</p>}
+      {loading && <p className="loading">Loading...</p>}
       {error && <p className="error">{error}</p>}
-      {data && <p>{data}</p>}
+      {message && <h2>{message}</h2>}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          Count is {count}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
