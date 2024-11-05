@@ -20,6 +20,12 @@
 
 This project is a full-stack application that combines a **React** frontend built with **Vite** and a **Flask** backend. It demonstrates how to set up a modern development environment with hot module replacement (HMR), linting, and seamless integration between the frontend and backend.
 
+## Screenshots
+
+![Dark theme](https://i.ibb.co/wd8y9Zr/dark-theme-screenshot.png)
+
+![Light theme](https://i.ibb.co/y5mMdvD/light-theme-screenshot.png)
+
 ## Project Structure
 
 ```bash
@@ -49,12 +55,6 @@ project-root/
 ├── Pipfile.lock
 └── requirements.txt
 ```
-
-## Screenshots
-
-![Dark theme](https://i.ibb.co/wd8y9Zr/dark-theme-screenshot.png)
-
-![Light theme](https://i.ibb.co/y5mMdvD/light-theme-screenshot.png)
 
 ## Features
 
